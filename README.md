@@ -15,40 +15,32 @@
 
 ---
 
-# 🌐 Live Demo
-
-🔗 **Working App:**  
-https://assignment-task-ag93.vercel.app/
-
 # ✨ Smart Bookmarks — Intelligent Bookmark Manager
 
 A modern, fast, and secure bookmark manager built with **Next.js 15**, **Supabase**, and **Tailwind CSS**.  
 Save, tag, and organize your links with real-time sync and secure authentication.
 
-Designed with performance, privacy, and production-ready architecture using App Router, Supabase Realtime, and Row Level Security.
+Built with production-ready architecture using **Next.js App Router**, **Supabase Realtime**, and **Row Level Security (RLS)**.
 
 ---
 
-# 🚀 Features
+# 🌐 Live Demo
 
-- 🔐 Google OAuth Authentication (passwordless login)
-- 🏷 Smart Tagging system
-- ⚡ Real-time bookmark sync across tabs/devices
-- 🔒 Row Level Security (RLS) for strict data isolation
-- 🎨 Modern responsive UI
-- 🧠 Fully typed TypeScript codebase
-- ☁️ One-click Vercel deployment
+🔗 **Working App:**  
+https://assignment-task-ag93.vercel.app/
+
+---
+
+# 🚀 Core Features
+
+- 🔐 Google OAuth authentication
+- 🏷 Smart tag-based bookmark organization
+- ⚡ Real-time sync across tabs & devices
+- 🔒 Row Level Security (RLS) data isolation
+- 🎨 Responsive Tailwind UI
+- 🧠 Type-safe TypeScript codebase
 - 🧭 Next.js 15 App Router architecture
-
----
-
-# 🧠 Smart Capabilities
-
-- Tag-based filtering
-- Instant UI updates via realtime DB events
-- User-scoped secure queries
-- Zero refresh state sync
-- Optimized client/server component split
+- ☁️ Vercel-ready deployment
 
 ---
 
@@ -59,25 +51,212 @@ Designed with performance, privacy, and production-ready architecture using App 
 Framework | Next.js 15 (App Router) |
 Language | TypeScript |
 Database | Supabase PostgreSQL |
-Authentication | Supabase Auth (Google OAuth) |
-Realtime | Supabase Realtime Channels |
+Auth | Supabase Auth (Google OAuth) |
+Realtime | Supabase Channels |
 Styling | Tailwind CSS |
-Deployment | Vercel |
+Deploy | Vercel |
 
 ---
 
-# 🧱 Architecture Highlights
+# 🧱 Architecture Diagram
 
-- App Router routing model
-- Client components only where realtime/state needed
-- Supabase channel subscriptions
-- Policy-based DB security
-- Event-driven UI refresh
-- Clean separation of concerns
+```mermaid
+flowchart LR
 
----
+User --> NextUI[Next.js App Router UI]
+NextUI --> ClientComp[Client Components]
+ClientComp --> Auth[Supabase Auth]
+ClientComp --> DB[(Supabase Postgres)]
+ClientComp --> RT[Supabase Realtime]
 
+Auth --> DB
 
+subgraph Security
+RLS[Row Level Security Policies]
+end
 
-<p align="center"> Built with ❤️ using Next.js + Supabase + Tailwind CSS </p> <p align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=0:E100FF,100:7F00FF&height=120&section=footer"/> </p> 
+DB --> RLS
+RT --> ClientComp
+Architecture Flow
 
+User interacts with Next.js frontend
+
+Google OAuth handled by Supabase Auth
+
+Bookmarks stored in Supabase PostgreSQL
+
+RLS enforces per-user data access
+
+Realtime channels push DB updates to UI
+
+📂 Project Structure
+app/
+├── login/
+├── dashboard/
+├── api/
+
+components/
+├── BookmarkList.tsx
+├── BookmarkForm.tsx
+
+lib/
+├── supabaseClient.ts
+
+supabase/
+├── schema.sql
+
+walkthrough.md
+⚙️ Setup Instructions
+1️⃣ Clone Repository
+git clone <your-repo-url>
+cd smart-bookmarks
+2️⃣ Install Dependencies
+npm install
+3️⃣ Environment Variables
+Create a file:
+
+.env.local
+Add:
+
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+4️⃣ Database Schema
+Run the SQL script:
+
+supabase/schema.sql
+Inside Supabase SQL Editor. This will:
+
+Create tables
+
+Enable Row Level Security
+
+Add access policies
+
+5️⃣ Google OAuth Setup
+Supabase Dashboard → Authentication → Providers
+
+Enable Google
+
+Add Client ID and Client Secret
+
+Configure Redirect URI (see walkthrough.md)
+
+6️⃣ Run Locally
+npm run dev
+Open:
+
+http://localhost:3000
+🔐 Security Model
+This project uses Supabase Row Level Security:
+
+Users only read/write their own bookmarks
+
+Policies enforced at database layer
+
+No cross-user access possible
+
+Secure-by-default queries
+
+⚡ Realtime Updates
+Bookmarks update instantly using Supabase realtime subscriptions.
+
+supabase
+  .channel('bookmarks')
+  .on(
+    'postgres_changes',
+    { event: '*', schema: 'public', table: 'bookmarks' },
+    handler
+  )
+  .subscribe()
+Supported events:
+
+INSERT
+
+DELETE
+
+UPDATE
+
+No polling. No refresh.
+
+🧩 Challenges & Solutions
+1️⃣ "Email signups are disabled" Error
+Problem:
+During initial development, we encountered:
+
+AuthApiError: Email signups are disabled
+Solution:
+Supabase default security settings disabled Email provider.
+
+Fix:
+
+Authentication → Providers → Email → Enable provider (ON)
+Even if Confirm Email is OFF, provider must be ON.
+
+2️⃣ Next.js 15 searchParams Breaking Change
+Problem:
+Login page crashed when accessing searchParams.error.
+
+Solution:
+Next.js 15 changed searchParams to a Promise.
+Refactored login page:
+
+const params = await props.searchParams
+3️⃣ Realtime Updates
+Problem:
+Bookmark list did not update without page refresh.
+
+Solution:
+
+Moved rendering to client component (BookmarkList)
+
+Subscribed to Supabase realtime channel
+
+Listened for INSERT and DELETE events
+
+Updated local state instantly
+
+🚀 Deployment — Vercel
+Push repository to GitHub
+
+Import project in Vercel
+
+Add environment variables
+
+Deploy
+
+📈 Future Enhancements
+AI tag suggestions
+
+Bookmark metadata previews
+
+Folder/group collections
+
+Full-text search
+
+Shareable bookmark lists
+
+Browser extension
+
+Bulk import/export
+
+👨‍💻 Developer Notes
+App Router best practices followed
+
+Strict TypeScript typing
+
+Realtime handled in client layer
+
+RLS tested with multi-user access
+
+Clean DB/UI separation
+
+⭐ Support
+If this project helped you:
+
+Star ⭐ the repo
+
+Fork 🍴 and extend
+
+Suggest improvements 💡
+
+<p align="center"> Built with ❤️ using Next.js + Supabase + Tailwind CSS </p> <p align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=0:E100FF,100:7F00FF&height=120&section=footer"/> </p> ```
