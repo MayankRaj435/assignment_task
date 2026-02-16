@@ -15,6 +15,11 @@
 
 ---
 
+# 🌐 Live Demo
+
+🔗 **Working App:**  
+https://assignment-task-ag93.vercel.app/
+
 # ✨ Smart Bookmarks — Intelligent Bookmark Manager
 
 A modern, fast, and secure bookmark manager built with **Next.js 15**, **Supabase**, and **Tailwind CSS**.  
