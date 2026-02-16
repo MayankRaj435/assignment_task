@@ -1,65 +1,78 @@
-# Smart Bookmarks App
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:7F00FF,100:E100FF&height=200&section=header&text=Smart%20Bookmarks&fontSize=48&fontColor=ffffff&animation=fadeIn" />
+</p>
 
-A modern, intelligent bookmark manager built with **Next.js 15**, **Supabase**, and **Tailwind CSS**.
+<h3 align="center">🔖 Intelligent Bookmark Manager • Next.js 15 • Supabase • Tailwind CSS</h3>
 
-## Features
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-15-black?logo=next.js" />
+  <img src="https://img.shields.io/badge/Supabase-PostgreSQL-3ecf8e?logo=supabase" />
+  <img src="https://img.shields.io/badge/Auth-Google%20OAuth-blue" />
+  <img src="https://img.shields.io/badge/Realtime-Enabled-success" />
+  <img src="https://img.shields.io/badge/TypeScript-Strict-blue?logo=typescript" />
+  <img src="https://img.shields.io/badge/UI-Tailwind-38bdf8?logo=tailwindcss" />
+</p>
 
--   **Google OAuth Authentication**: Secure sign-in without passwords.
--   **Smart Tagging**: Organize your bookmarks with custom tags.
--   **Real-time Updates**: Bookmarks sync instantly across multiple tabs/devices using Supabase Realtime.
--   **Row Level Security**: Your data is private and only accessible by you.
+---
 
-## Tech Stack
+# ✨ Smart Bookmarks — Intelligent Bookmark Manager
 
--   **Framework**: Next.js 15 (App Router)
--   **Database**: Supabase (PostgreSQL)
--   **Auth**: Supabase Auth (Google Provider)
--   **Styling**: Tailwind CSS
--   **Language**: TypeScript
+A modern, fast, and secure bookmark manager built with **Next.js 15**, **Supabase**, and **Tailwind CSS**.  
+Save, tag, and organize your links with real-time sync and secure authentication.
 
-## Setup Instructions
+Designed with performance, privacy, and production-ready architecture using App Router, Supabase Realtime, and Row Level Security.
 
-### 1. Environment Variables
-Create a file named `.env.local` in the root directory and add your Supabase credentials:
+---
 
-```bash
-NEXT_PUBLIC_SUPABASE_URL=your-project-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-```
+# 🚀 Features
 
-### 2. Database Schema
-Run the SQL script located in `supabase/schema.sql` in your Supabase SQL Editor. This enables **Row Level Security (RLS)** and creates the necessary tables.
+- 🔐 Google OAuth Authentication (passwordless login)
+- 🏷 Smart Tagging system
+- ⚡ Real-time bookmark sync across tabs/devices
+- 🔒 Row Level Security (RLS) for strict data isolation
+- 🎨 Modern responsive UI
+- 🧠 Fully typed TypeScript codebase
+- ☁️ One-click Vercel deployment
+- 🧭 Next.js 15 App Router architecture
 
-### 3. Google OAuth Setup
-1.  Go to Supabase Dashboard -> Authentication -> Providers.
-2.  Enable **Google**.
-3.  Add your **Client ID** and **Client Secret** from Google Cloud Console.
-4.  **Important**: detailed instructions on setting up the Redirect URI are in `walkthrough.md`.
+---
 
-### 4. Run Locally
-```bash
-npm install
-npm run dev
-```
+# 🧠 Smart Capabilities
 
-## Deployment to Vercel
+- Tag-based filtering
+- Instant UI updates via realtime DB events
+- User-scoped secure queries
+- Zero refresh state sync
+- Optimized client/server component split
 
-1.  Push this code to a GitHub repository.
-2.  Go to [Vercel](https://vercel.com) and "Import Project".
-3.  Select your GitHub repository.
-4.  **Environment Variables**: Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in the Vercel dashboard during import.
-5.  Click **Deploy**.
+---
 
-## Challenges & Solutions
+# 🛠 Tech Stack
 
-### 1. "Email signups are disabled" Error
-**Problem**: During initial development, we encountered `AuthApiError: Email signups are disabled`.
-**Solution**: This was due to Supabase's default security settings. We had to navigate to `Authentication -> Providers -> Email` and ensure the provider was actually **Enabled** (toggled ON), even if "Confirm Email" was toggled OFF.
+| Layer | Technology |
+|--------|----------------|
+Framework | Next.js 15 (App Router) |
+Language | TypeScript |
+Database | Supabase PostgreSQL |
+Authentication | Supabase Auth (Google OAuth) |
+Realtime | Supabase Realtime Channels |
+Styling | Tailwind CSS |
+Deployment | Vercel |
 
-### 2. Next.js 15 `searchParams` Breaking Change
-**Problem**: The application crashed on the login page with a runtime error accessing `searchParams.error`.
-**Solution**: Next.js 15 changed `searchParams` from a synchronous object to a **Promise**. We refactored `app/login/page.tsx` to `await props.searchParams` before using it.
+---
 
-### 3. Realtime Updates
-**Problem**: We needed the bookmark list to update without a page refresh.
-**Solution**: We moved the list rendering to a client component (`BookmarkList`) and used `supabase.channel().on('postgres_changes', ...)` to listen for `INSERT` and `DELETE` events, updating the local state instantly.
+# 🧱 Architecture Highlights
+
+- App Router routing model
+- Client components only where realtime/state needed
+- Supabase channel subscriptions
+- Policy-based DB security
+- Event-driven UI refresh
+- Clean separation of concerns
+
+---
+
+
+
+<p align="center"> Built with ❤️ using Next.js + Supabase + Tailwind CSS </p> <p align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=0:E100FF,100:7F00FF&height=120&section=footer"/> </p> 
+
