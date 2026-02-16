@@ -43,7 +43,7 @@ export default function BookmarkCard({ bookmark }: { bookmark: Bookmark }) {
                     <button
                         onClick={handleDelete}
                         disabled={isDeleting}
-                        className="opacity-0 group-hover:opacity-100 transition-opacity text-zinc-400 hover:text-red-400 p-1 rounded-md hover:bg-white/5"
+                        className="opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity text-zinc-400 hover:text-red-400 p-1 rounded-md hover:bg-white/5"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
                             <path fillRule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.49 1.478l-.56 12.743a4.5 4.5 0 01-4.5 4.5h-4.656a4.5 4.5 0 01-4.5-4.5l-.56-12.743a48.818 48.818 0 01-3.878-.512.75.75 0 11.49-1.478 48.831 48.831 0 013.878-.512V4.478a2.25 2.25 0 012.25-2.25h3.75a2.25 2.25 0 012.25 2.25zM6.258 7.749l.527 11.967a3 3 0 003 3h4.656a3 3 0 003-3l.527-11.967A49.814 49.814 0 0112 7.75a49.814 49.814 0 01-5.742-.001z" clipRule="evenodd" />
