@@ -224,5 +224,5 @@ Realtime handled in client layer
 RLS validated with multi-user testing
 
 Clean separation of UI and data layer
-
-<p align="center"> Built with Next.js + Supabase + Tailwind CSS </p> <p align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=0:E100FF,100:7F00FF&height=120&section=footer"/> </p> ```
+```
+<p align="center"> Built with Next.js + Supabase + Tailwind CSS </p> <p align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=0:E100FF,100:7F00FF&height=120&section=footer"/> </p> 
